@@ -1,21 +1,22 @@
 const inquirer = require('inquirer');
+const ContactController = require("./ContactController");
 
  module.exports = class MenuController {
-   constructor(){
+   constructor() {
 
-   this.mainMenuQuestions = [
-     {
-      type: "list",
-       name: "mainMenuChoice",
-       message: "Please choose from an option below: ",
-       choices: [
-         "Add new contact",
-         "Show Date/Time",
-         "Exit"
-       ]
-     }
-   ];
-   this.contacts = [];
+     this.mainMenuQuestions = [
+       {
+        type: "list",
+         name: "mainMenuChoice",
+         message: "Please choose from an option below: ",
+         choices: [
+           "Add new contact",
+           "Show Date/Time",
+           "Exit"
+         ]
+       }
+     ];
+     this.book = new ContactController();
    }
 
    main(){
@@ -46,7 +47,15 @@ const inquirer = require('inquirer');
 
    addContact() {
      this.clear();
-     console.log('addContact called');
+     inquirer.prompt(this.book.addContactQuestions).then((answers) => {
+       this.book.addContact(answers.name, answers.phone).then((contact) => {
+         console.log("Contact added successfully!");
+         this.main();
+       }).catch((err) => {
+         console.log(err);
+         this.main();
+       });
+     });
      this.main();
    }
 
