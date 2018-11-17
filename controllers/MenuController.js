@@ -63,5 +63,9 @@ const inquirer = require('inquirer');
      console.log("\n");
      this.main();
    }
+   getContactCount() {
+     //method definition
+     return this.contacts.length;
+   }
 
  }
