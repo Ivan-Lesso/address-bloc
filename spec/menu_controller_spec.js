@@ -2,10 +2,10 @@ const MenuController = require("../controllers/MenuController");
 
 // #1
  describe("MenuController", () => {
+   beforeEach(() => {
+      this.menu = new MenuController();
+   });
    describe("#getContactCount()", () => {
-     beforeEach(() => {
-        this.menu = new MenuController();
-     });
 // #2
      it("should return 0 when no contacts are in the book", () => {
        expect(this.menu.getContactCount()).toBe(0);
@@ -13,6 +13,11 @@ const MenuController = require("../controllers/MenuController");
      it("should return 1 when there is exactly one contact in the book", () => {
        this.menu.contacts.push("Bob");
        expect(this.menu.getContactCount()).toBe(1);
+     });
+   });
+   describe("#remindMe()", () => {
+     it("should return a string 'Learning is a life-long pursuit' when called", () => {
+       expect(this.menu.remindMe()).toContain("Learning is a life-long pursuit");
      });
    });
  });
