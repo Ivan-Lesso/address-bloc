@@ -10,7 +10,7 @@ const MenuController = require("../controllers/MenuController");
    });
    describe("#remindMe()", () => {
      it("should return a string 'Learning is a life-long pursuit' when called", () => {
-       expect(this.menu.remindMe()).toContain("Learning is a life-long pursuit");
+       expect(this.menu.remindMe()).toBe("Learning is a life-long pursuit");
      });
    });
  });
